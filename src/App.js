@@ -1,18 +1,20 @@
 import logo from './logo.svg';
 import './App.css';
-
+import { BrowserRouter as Router, Switch, Route, Redirect,  } from "react-router-dom";
+import { Container } from "react-bootstrap";
+import MainDashboardTemplate from "./pages/MainDashboardTemplate";
 function App() {
   return (
-    <Container style={{ padding: 0, fontFamily: "Raleway" }}>
-    <Container>
+
+
       <Router>
         <Switch>
           
-          <Route path="/" component={LoginTemplate} />
+          <Route path="/" component={MainDashboardTemplate} />
         </Switch>
       </Router>
-    </Container>
-  </Container>
+
+
   );
 }
 
