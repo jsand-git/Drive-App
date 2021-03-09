@@ -8,5 +8,6 @@ export default function MainDashboardTemplate() {
         <NavBar></NavBar>
         
         
+        
   );
 }

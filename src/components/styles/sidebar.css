@@ -1,17 +1,27 @@
+#container {
+  display: flex;
+}
+.col-md-12 {
+  max-width: 3% !important;
+  min-width: 3% !important;
+}
+
 .sidebar {
+  
     background-color: #235789;
-    display: flex;
     align-items: center;
     justify-content: center;
     min-height: 100vh !important;
+    min-width: 5vh !important;
     z-index: 100;
     vertical-align: middle;
     box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+
+    
 }
 #sidebar-wrapper{
     min-height: 100vh !important;
-    width: 100vw;
-    margin-left: -1rem;
+
     -webkit-transition: margin .25s ease-out;
     -moz-transition: margin .25s ease-out;
     -o-transition: margin .25s ease-out;
@@ -22,10 +32,31 @@
     font-size: 2 rem;
 }
 
-#page-content-wrapper {
+#page-content-wrapper1 {
     min-width: 0;
-    width: 100%;
+    width: 25% !important;
+    text-align: center;
+    
 }
+
+#page-content-wrapper2 {
+  min-width: 0;
+  width: 65% !important;
+  
+
+}
+
+#imageKofi {
+  max-width: 100px;
+  max-height: 110px;
+}
+
+#nameEmail{
+  border: 1px solid red;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
 
 ul {
     position: fixed; 

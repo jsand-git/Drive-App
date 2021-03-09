@@ -4,6 +4,18 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
+// const admin = require('firebase-admin');
+// admin.initializeApp();
+// const db = admin.firestore();
+
+// const userReference = db.collection('users')
+// const snapshot = await userReference.where('id', '==', true).get();
+// if(snapshot.empty) {
+//   console.log('No mathing documents.');
+  
+// }
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
