@@ -1,0 +1,26 @@
+Google Drive important variable list: 
+Look at the API for more information
+
+sharingUser : The user who shared the file with the requesting user, if applicable.
+sharingUser.displayName: A plain text displayable name for this user
+sharingUser.me: Whether this user is the requesting user
+sharingUser.emailAddress: The email address of the user. This may not be present in certain contexts if the user has not made their email address visible to the requester.
+Owners[]: The owners of the file. Currently, only certain legacy files may have more than one owner. Not populated for items in shared drives.
+owners[].displayName: A plain text displayable name for this user.
+shared: Whether the file has been shared. Not populated for items in shared drives.
+capabilities: Capabilities the current user has on this file. Each capability corresponds to a fine-grained action that a user may take
+capabilities.canEdit (canComment, canShare, canCopy, canReadRevisions, canDownload, canDelete, canAddChildren, canMoveTeamDriveItem, canMoveItemIntoTeamDrive, canTrash, canRename, ) : Whether the current user can edit this file. Other factors may limit the type of changes a user can make to a file. For example, see canChangeCopyRequiresWriterPermission or canModifyContent
+
+
+
+Google Sheets important variable list: 
+copyTo: Copies a single sheet from a spreadsheet to another spreadsheet.
+Get: Returns a range of values from a spreadsheet.
+Update: Sets values in a range of a spreadsheet.
+
+
+Google docs important variable list
+Get: Gets the latest version of the specified document.
+
+
+
