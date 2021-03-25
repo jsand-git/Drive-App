@@ -4,13 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect,  } from "react-router
 import { Container } from "react-bootstrap";
 import MainDashboardTemplate from "./pages/MainDashboardTemplate";
 import LoginTemplate from "./pages/LoginTemplate";
-import firebase from "firebase/app";
-import "firebase/auth";
-import "firebase/firestore";
 
-// function initializeFirebase(){
-//
-// }
 
 function App() {
   var firebaseConfig = {

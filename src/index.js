@@ -4,20 +4,23 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '@fortawesome/fontawesome-free/css/all.min.css'; 
-import'bootstrap-css-only/css/bootstrap.min.css'; 
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import'bootstrap-css-only/css/bootstrap.min.css';
 import 'mdbreact/dist/css/mdb.css';
+import firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/firestore";
 
-// const admin = require('firebase-admin');
-// admin.initializeApp();
-// const db = admin.firestore();
-
-// const userReference = db.collection('users')
-// const snapshot = await userReference.where('id', '==', true).get();
-// if(snapshot.empty) {
-//   console.log('No mathing documents.');
-  
-// }
+var firebaseConfig = {
+  apiKey: "AIzaSyAUSMd4BKdxKIIgq2VGLwfzLPXW-wLzBkc",
+  authDomain: "hu-drive.firebaseapp.com",
+  projectId: "hu-drive",
+  storageBucket: "hu-drive.appspot.com",
+  messagingSenderId: "870378528473",
+  appId: "1:870378528473:web:32fd812371f35bb746e8c8",
+  measurementId: "G-TFBDHN9TZ4"
+}
+firebase.initializeApp(firebaseConfig);
 
 ReactDOM.render(
   <React.StrictMode>

@@ -61,23 +61,27 @@ import "firebase/firestore";
 
 
 export default function LoginDashboard() {
+   //initialize firebase
 
+
+  // var firebaseConfig = {
+  //   apiKey: "AIzaSyAUSMd4BKdxKIIgq2VGLwfzLPXW-wLzBkc",
+  //   authDomain: "hu-drive.firebaseapp.com",
+  //   projectId: "hu-drive",
+  //   storageBucket: "hu-drive.appspot.com",
+  //   messagingSenderId: "870378528473",
+  //   appId: "1:870378528473:web:32fd812371f35bb746e8c8",
+  //   measurementId: "G-TFBDHN9TZ4"
+  // }
+  // firebase.initializeApp(firebaseConfig);
+
+  // firebase.initializeApp(firebaseConfig);
   var provider = new firebase.auth.GoogleAuthProvider();
   function sendToLoginSuccesssful() {
    firebase.auth().signInWithRedirect(provider);
     console.log('Successful');
   }
-  // onclick={sendToLoginRedirect()}
 
-// firebase.auth().signInWithRedirect(provider);
-// {signInWithRedirect(provider);
-// <button onClick={() =>{ sendToLoginSuccesssful(); }}
-//     type="button" class="btn">Enter</button>
-
-// <button onClick={() =>{ sendToLoginSuccesssful(); console.log('worked'); }}
-//     type="button" class="btn">Enter</button>
-// <button onClick={() =>{ firebase.auth().signInWithRedirect(provider);; console.log('worked'); }}
-//     type="button" class="btn">Enter</button>
     return(
       <div id="backgound"  class="full-width-div">
         <h1>Login </h1>
