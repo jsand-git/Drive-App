@@ -5,6 +5,9 @@ import './styles/sidebar.css'
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
+import {Helmet} from 'react-helmet';
+import { MDBContainer, MDBRow, MDBCol } from "mdbreact"
+
 
 // Sign in with SignInwithPopup
 // firebase.auth().signInwithPopup(provider)
@@ -83,11 +86,32 @@ export default function LoginDashboard() {
   }
 
     return(
-      <div id="backgound"  class="full-width-div">
+      
+        <div>
+            <Helmet>
+                <style>{'body { background-color: #357EC7; }'}</style>
+            </Helmet>
         <h1>Login </h1>
         <button onClick={() => {firebase.auth().signInWithRedirect(provider)}}
             type="button" class="btn">Enter</button>
-    </div>
+          <MDBContainer className="mt-5">
+        <MDBRow className="mb-4">
+          <MDBCol md="8">
+            <img src="https://upload.wikimedia.org/wikipedia/en/b/b4/Howard_Bison_logo.svg" className="img-fluid" alt="" />
+          </MDBCol>
+        </MDBRow>
+        <MDBRow className="mb-4">
+          <MDBCol md="8">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Howard_Bison_Wordmark_2015.png" className="img-fluid" alt="" />
+          </MDBCol>
+        </MDBRow>
+        <MDBRow className="mb-4">
+          <MDBCol md="6">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/d/da/Google_Drive_logo.png" className="align-text-top" alt="aligment"  />
+          </MDBCol>
+        </MDBRow>
+      </MDBContainer>
+        </div>
 
 
 
