@@ -26,7 +26,7 @@
 
 img{
   height: 800px;
-  transform: rotate(-10deg);
+  /* transform: rotate(-10deg); */
 }
 
 .App-link {
