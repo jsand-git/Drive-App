@@ -5,24 +5,52 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 import {Helmet} from 'react-helmet';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 import { MDBContainer, MDBRow, MDBCol } from "mdbreact"
 import { Img } from "react-image";
 
 
+
+
 export default function LoginDashboard() { 
+  
   var provider = new firebase.auth.GoogleAuthProvider();
-  function sendToLoginSuccesssful() {
+
+  function sendToLoginSuccesssful(provider) {
+   console.log('Successful');
    firebase.auth().signInWithRedirect(provider);
-    console.log('Successful');
+   console.log('LOG');
+     firebase.auth().onAuthStateChanged(function(user) {
+     if (user) {
+       console.log('User is signed in.');
+     } else {
+       console.log('No user is signed in.');
+     }
+   });
   }
+    firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      console.log('User is signed in.');
+    } else {
+      console.log('No user is signed in.');
+    }
+  });
+  console.log('Line 37'); 
 
 
     return(
+
     <div>
       <img src= "/loginImgs/HUBison.svg" alt= "Bison Logo" style={{ float: 'left', paddingRight : '5px' }} />
       <h1 style={{color: "tomato",fontSize: 70, fontWeight: "bolder"}}> LOGIN  </h1>
-      <button onClick={() => {firebase.auth().signInWithRedirect(provider)}}
-      type="button" class="btn" > Login </button>
+      <button onClick={() => {sendToLoginSuccesssful(provider)}}
+            type="button" class="btn">Enter</button>
+      <Link to="/main" type="button" class="btn">Go to Dashboard</Link>
       <img src= "/loginImgs/HUBisonWords.png" alt= "Bison Logo Words" style={{ width: 600 , height: 300, left: 850, bottom: 475,  position: "absolute"}} />
       <img src= "/loginImgs/GDRLogo.png" alt= "Google Drive Logo" style={{ width: 400 , height: 400, left: 925, bottom: 50, position: "absolute"}} />
       
@@ -30,14 +58,8 @@ export default function LoginDashboard() {
         <style>{'body { background-color: #357EC7; }'}</style>
       </Helmet>
       
-      
-      
-    
     
     </div>
-
-
-
 
 
 
