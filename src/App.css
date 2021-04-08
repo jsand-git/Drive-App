@@ -24,6 +24,11 @@
   color: white;
 }
 
+img{
+  height: 800px;
+  /* transform: rotate(-10deg); */
+}
+
 .App-link {
   color: #61dafb;
 }
