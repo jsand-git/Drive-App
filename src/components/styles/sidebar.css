@@ -73,6 +73,7 @@ ul {
    }
   
   ul li {
+    text-align: center;
     display:block;
     min-width: 8vh !important;
     max-width: 8vh !important;

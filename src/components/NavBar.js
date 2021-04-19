@@ -1,6 +1,5 @@
 import React, { Component, useState } from "react";
-import {Nav, Row, Col,Image, InputGroup} from 'react-bootstrap';
-import  Carousel  from './Carousel1.js';
+import {Nav, Row, Col,Image, InputGroup, } from 'react-bootstrap';import  Carousel  from './Carousel1.js';
 import  Search  from './SearchBar.js';
 import  InfoCards  from './InfoCards.js';
 import Calendar from 'react-calendar';
@@ -9,43 +8,120 @@ import './styles/sidebar.css'
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
+import './styles/sidebar.css'
 
-export default function NavBar() {
+import {Helmet} from 'react-helmet';
 
-    const [value, onChange] = useState(new Date());
 
-    var user = firebase.auth().currentUser;
-    var userDisplayName;
-    var userEmail;
-    var userProfilePic;
 
-    if (user != null) {
-      user.providerData.forEach(function (profile) {
-          console.log("Sign-in provider: " + profile.providerId);
-          console.log("  Provider-specific UID: " + profile.uid);
-          console.log("  Name: " + profile.displayName);
-          console.log("  Email: " + profile.email);
-          console.log("  Photo URL: " + profile.photoURL);
-          userDisplayName = profile.displayName;
-          userEmail = profile.email;
-          userProfilePic =  profile.photoURL;
-      console.log("Anything");
 
-      });
+class NavBar extends React.Component {
+
+
+    constructor(props) {
+
+        var provider = new firebase.auth.GoogleAuthProvider();
+
+        
+        super(props);
+        this.state = {
+        count: 0,  
+        userDisplayName: null,
+        userEmail: null,
+        userProfilePic: null,
+        loggedin: false,
+        provider: provider,
+        user: null
+        };
+      }
+
+      componentDidMount(){
+        console.log(this.state.userDisplayName);
+        console.log(this.state.userEmail);
+        console.log(this.state.userProfilePic);
+        console.log(this.state.loggedin);
+        console.log(this.state.auth);
+        console.log(this.state.user);
+        console.log("user");
+        console.log(firebase.auth().currentUser);
+        
+      }
+
+    sendToLoginSuccesssful(provider) {
+
+      
+    firebase.auth()
+  .signInWithPopup(provider)
+  .then((result) => {
+    /** @type {firebase.auth.OAuthCredential} */
+    var credential = result.credential;
+
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    var token = credential.accessToken;
+    // The signed-in user info.
+    var user1 = result.user;
+    this.setState({user: user1});
+    this.setVal(user1);
+    // ...
+  }).catch((error) => {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // The email of the user's account used.
+    var email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
+    // ...
+  }); 
+        
+
+
+    }
+
+    setVal(user){
+
+        this.setState({userDisplayName: user.displayName});
+        this.setState({userEmail: user.email});
+        this.setState({userProfilePic: user.photoURL});
+        this.setState({loggedin: true});
+        console.log("success");
+    }
+
+
+    
+    
+
+
+
+    signout(){
+        firebase.auth().signOut().then(() => {
+            // Sign-out successful.
+          }).catch((error) => {
+            // An error happened.
+          });
+
+
+          this.setState({loggedin: false});
     }
 
 
 
-    return (
+    render() {
 
-        <div id="container">
+    
+        if (this.state.loggedin){
+
+            
+        
+            return (
+            <div id="container">
         <Nav className=" col d-none d-md-block sidebar"
         activeKey="/home"
         onSelect={selectedKey => alert(`selected ${selectedKey}`)}
         >
             <div className="sidebar-sticky"></div>
-
-
+  
+  
         <ul class="nav flex-column">
             <li class="nav-item">
             <a class="nav-link active" href="#">
@@ -68,23 +144,23 @@ export default function NavBar() {
             </svg>
             </a>
             </li>
-
+  
             <li class="nav-item">
             <a class="nav-link" href="#">
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+            <svg onClick={() => {this.signout()}} xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
             <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
             </svg>
             </a>
             </li>
-
+  
         </ul>
-
-
+  
+  
         </Nav>
-
+  
         <div id="page-content-wrapper1" className="container-fluid">
-
+  
         <Row>
             <Col id="nameEmail"  className="col">
                 <div class="container">
@@ -94,19 +170,19 @@ export default function NavBar() {
                         </Col>
                     <div class="w-100"></div>
                         <Col id="nameEmail" className="col">
-                            <h5> { userDisplayName } </h5>
-                            <p>{ userEmail }</p>
+                            <h5> { this.state.userDisplayName } </h5>
+                            <p>{ this.state.userEmail }</p>
                         </Col>
                         <Col id="contentstuff" className="col">
-                            <Image id="imageKofi" src= { userProfilePic } roundedCircle />
+                            <Image id="imageKofi" src= { this.state.userProfilePic } roundedCircle />
                         </Col>
-
+  
                     <div class="w-100"></div>
                         <Col>
                         <Carousel></Carousel>
                         </Col>
-
-
+  
+  
                     </Row>
                 </div>
             </Col>
@@ -116,19 +192,61 @@ export default function NavBar() {
                 <InfoCards></InfoCards>
             <div class="w-100"></div>
                <Calendar
-                onChange={onChange}
-                value={value}
+              //   onChange={onChange}
+              //   value={value}
                 />
             </Col>
-
-
+  
+  
         </Row>
-
-
-
+  
+  
+  
         </div>
+  
+  
+  </div>);
+  
+}
+
+if (this.state.loggedin == false){
 
 
-</div>
-        );
+
+    return(
+    <div>
+    <img src= "/loginImgs/HUBison.svg" alt= "Bison Logo" style={{ float: 'left', paddingRight : '5px' }} />
+    <h1 style={{color: "tomato",fontSize: 70, fontWeight: "bolder"}}> LOGIN  </h1>
+
+      <button onClick={() => {this.sendToLoginSuccesssful(this.state.provider)}}>Enter</button>
+
+    <img src= "/loginImgs/HUBisonWords.png" alt= "Bison Logo Words" style={{ width: 600 , height: 300, left: 850, bottom: 475,  position: "absolute"}} />
+    <img src= "/loginImgs/GDRLogo.png" alt= "Google Drive Logo" style={{ width: 400 , height: 400, left: 925, bottom: 50, position: "absolute"}} />
+
+    <Helmet>
+      <style>{'body { background-color: #357EC7; }'}</style>
+    </Helmet>
+
+
+  </div> );
+}
+      
+      
+
     }
+}
+
+
+
+export default NavBar;
+
+
+
+
+
+
+
+
+
+
+
