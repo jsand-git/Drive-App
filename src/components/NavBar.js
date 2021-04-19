@@ -1,5 +1,5 @@
 import React, { Component, useState } from "react";
-import {Nav, Row, Col,Image, InputGroup, } from 'react-bootstrap';import  Carousel  from './Carousel1.js';
+import {Nav, Row, Col,Image, ListGroup, ListGroupItem } from 'react-bootstrap';import  Carousel  from './Carousel1.js';
 import  Search  from './SearchBar.js';
 import  InfoCards  from './InfoCards.js';
 import Calendar from 'react-calendar';
@@ -191,11 +191,16 @@ class NavBar extends React.Component {
             <div class="w-100"></div>
                 <InfoCards></InfoCards>
             <div class="w-100"></div>
-               <Calendar
-              //   onChange={onChange}
-              //   value={value}
-                />
+            <ListGroup>
+                <ListGroup.Item>Cras justo odio</ListGroup.Item>
+                <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
+                <ListGroup.Item>Morbi leo risus</ListGroup.Item>
+                <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
+                <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
+            </ListGroup>
+            
             </Col>
+
   
   
         </Row>
