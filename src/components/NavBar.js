@@ -22,10 +22,10 @@ class NavBar extends React.Component {
 
         var provider = new firebase.auth.GoogleAuthProvider();
 
-        
+
         super(props);
         this.state = {
-        count: 0,  
+        count: 0,
         userDisplayName: null,
         userEmail: null,
         userProfilePic: null,
@@ -44,12 +44,12 @@ class NavBar extends React.Component {
         console.log(this.state.user);
         console.log("user");
         console.log(firebase.auth().currentUser);
-        
+
       }
 
     sendToLoginSuccesssful(provider) {
 
-      
+
     firebase.auth()
   .signInWithPopup(provider)
   .then((result) => {
@@ -72,8 +72,8 @@ class NavBar extends React.Component {
     // The firebase.auth.AuthCredential type that was used.
     var credential = error.credential;
     // ...
-  }); 
-        
+  });
+
 
 
     }
@@ -88,8 +88,8 @@ class NavBar extends React.Component {
     }
 
 
-    
-    
+
+
 
 
 
@@ -108,11 +108,11 @@ class NavBar extends React.Component {
 
     render() {
 
-    
+
         if (this.state.loggedin){
 
-            
-        
+
+
             return (
             <div id="container">
         <Nav className=" col d-none d-md-block sidebar"
@@ -120,8 +120,8 @@ class NavBar extends React.Component {
         onSelect={selectedKey => alert(`selected ${selectedKey}`)}
         >
             <div className="sidebar-sticky"></div>
-  
-  
+
+
         <ul class="nav flex-column">
             <li class="nav-item">
             <a class="nav-link active" href="#">
@@ -144,7 +144,7 @@ class NavBar extends React.Component {
             </svg>
             </a>
             </li>
-  
+
             <li class="nav-item">
             <a class="nav-link" href="#">
             <svg onClick={() => {this.signout()}} xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
@@ -153,14 +153,14 @@ class NavBar extends React.Component {
             </svg>
             </a>
             </li>
-  
+
         </ul>
-  
-  
+
+
         </Nav>
-  
+
         <div id="page-content-wrapper1" className="container-fluid">
-  
+
         <Row>
             <Col id="nameEmail"  className="col">
                 <div class="container">
@@ -176,13 +176,13 @@ class NavBar extends React.Component {
                         <Col id="contentstuff" className="col">
                             <Image id="imageKofi" src= { this.state.userProfilePic } roundedCircle />
                         </Col>
-  
+
                     <div class="w-100"></div>
                         <Col>
                         <Carousel></Carousel>
                         </Col>
-  
-  
+
+
                     </Row>
                 </div>
             </Col>
@@ -204,14 +204,14 @@ class NavBar extends React.Component {
   
   
         </Row>
-  
-  
-  
+
+
+
         </div>
-  
-  
+
+
   </div>);
-  
+
 }
 
 if (this.state.loggedin == false){
@@ -223,7 +223,7 @@ if (this.state.loggedin == false){
     <img src= "/loginImgs/HUBison.svg" alt= "Bison Logo" style={{ float: 'left', paddingRight : '5px' }} />
     <h1 style={{color: "tomato",fontSize: 70, fontWeight: "bolder"}}> LOGIN  </h1>
 
-      <button onClick={() => {this.sendToLoginSuccesssful(this.state.provider)}}>Enter</button>
+      <button onClick={() => {this.sendToLoginSuccesssful(this.state.provider)}} type="button" class="btn">Enter</button>
 
     <img src= "/loginImgs/HUBisonWords.png" alt= "Bison Logo Words" style={{ width: 600 , height: 300, left: 850, bottom: 475,  position: "absolute"}} />
     <img src= "/loginImgs/GDRLogo.png" alt= "Google Drive Logo" style={{ width: 400 , height: 400, left: 925, bottom: 50, position: "absolute"}} />
@@ -235,8 +235,8 @@ if (this.state.loggedin == false){
 
   </div> );
 }
-      
-      
+
+
 
     }
 }
@@ -244,14 +244,3 @@ if (this.state.loggedin == false){
 
 
 export default NavBar;
-
-
-
-
-
-
-
-
-
-
-
