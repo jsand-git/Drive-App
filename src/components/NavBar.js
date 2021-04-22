@@ -9,6 +9,7 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 import './styles/sidebar.css'
+import { Students } from "./json/data.js";
 
 import {Helmet} from 'react-helmet';
 
@@ -31,7 +32,9 @@ class NavBar extends React.Component {
         userProfilePic: null,
         loggedin: false,
         provider: provider,
-        user: null
+        user: null,
+        documentNames: [],
+        documentImg: null
         };
       }
 
@@ -48,35 +51,31 @@ class NavBar extends React.Component {
       }
 
     sendToLoginSuccesssful(provider) {
-
-
-    firebase.auth()
-  .signInWithPopup(provider)
-  .then((result) => {
+        firebase.auth()
+        .signInWithPopup(provider)
+        .then((result) => {
     /** @type {firebase.auth.OAuthCredential} */
-    var credential = result.credential;
+        var credential = result.credential;
 
-    // This gives you a Google Access Token. You can use it to access the Google API.
-    var token = credential.accessToken;
-    // The signed-in user info.
-    var user1 = result.user;
-    this.setState({user: user1});
-    this.setVal(user1);
-    // ...
-  }).catch((error) => {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    // The email of the user's account used.
-    var email = error.email;
-    // The firebase.auth.AuthCredential type that was used.
-    var credential = error.credential;
-    // ...
-  });
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        var token = credential.accessToken;
+        // The signed-in user info.
+        var user1 = result.user;
+        this.setState({user: user1});
+        this.setVal(user1);
+        // ...
+    }).catch((error) => {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        var email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+        // ...
+    });
 
-
-
-    }
+}
 
     setVal(user){
 
@@ -85,8 +84,24 @@ class NavBar extends React.Component {
         this.setState({userProfilePic: user.photoURL});
         this.setState({loggedin: true});
         console.log("success");
+        this.setDocuments(user.displayName); 
     }
 
+    setDocuments(name){
+        var x;
+        // console.log(name)
+        for( x = 0 ; x < Students.length ; x++) {
+            console.log(Students[x].name)
+            
+            if ( name == Students[x].name.valueOf()) {
+                console.log("ABOOBARAK")
+                this.setstate({documentNames: Students.documentNames});
+            }
+            
+        }
+        
+        this.setstate({documentImg: this.state.documentNames[0]});
+    }
 
 
 
@@ -179,7 +194,7 @@ class NavBar extends React.Component {
 
                     <div class="w-100"></div>
                         <Col>
-                        <Carousel></Carousel>
+                        <Image></Image>
                         </Col>
 
 
@@ -192,7 +207,7 @@ class NavBar extends React.Component {
                 <InfoCards></InfoCards>
             <div class="w-100"></div>
             <ListGroup>
-                <ListGroup.Item>Cras justo odio</ListGroup.Item>
+                <ListGroup.Item>{ this.state.documentNames[0] } </ListGroup.Item>
                 <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
                 <ListGroup.Item>Morbi leo risus</ListGroup.Item>
                 <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
