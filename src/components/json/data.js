@@ -8,7 +8,7 @@ export const Students = [
             professor : "Dr.Keeling",
             students: ["Joed Ngangmeni","Javaughn Sanders"]
         },
-        documentNames: ["kofi_spring2021Schedule", "kofi_computerScienceCurriculum"]
+        documentNames: ["kofi_registration_form", "kofi_checklist"]
     },
     {
         name: "Joed Ngangmeni",
@@ -19,7 +19,7 @@ export const Students = [
             professor : "Dr.Keeling",
             students: ["Joed Ngangmeni","Javaughn Sanders"]
         },
-        documentNames: ["joed_spring2021Schedule", "joed_computerScienceCurriculum"]
+        documentNames: ["joed_registration_form", "joed_checklist"]
     },
     {
         name: "Javaughn Sanders",
@@ -30,7 +30,7 @@ export const Students = [
             professor : "Dr.Keeling",
             students: ["Joed Ngangmeni","Kofi Fort"]
         },
-        documentNames: ["javaughn_spring2021Schedule", "javaughn_computerScienceCurriculum"]
+        documentNames: ["javaughn_registration_form", "javaughn_checklist"]
     }
         
 

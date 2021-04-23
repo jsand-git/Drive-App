@@ -3,6 +3,7 @@ import {Nav, Row, Col,Image, ListGroup, ListGroupItem } from 'react-bootstrap';i
 import  Search  from './SearchBar.js';
 import  InfoCards  from './InfoCards.js';
 import Calendar from 'react-calendar';
+import Popup from './Popup.js';
 import 'react-calendar/dist/Calendar.css';
 import './styles/sidebar.css'
 import firebase from "firebase/app";
@@ -10,6 +11,7 @@ import "firebase/auth";
 import "firebase/firestore";
 import './styles/sidebar.css'
 import { Students } from "./json/data.js";
+import { Button } from "bootstrap";
 
 import {Helmet} from 'react-helmet';
 
@@ -33,9 +35,20 @@ class NavBar extends React.Component {
         loggedin: false,
         provider: provider,
         user: null,
-        documentNames: [],
-        documentImg: null
+        document1: null,
+        document2: null,
+        document3: "policies_and_procedures",
+        documentImg: null,
         };
+      }
+      
+      togglePopup() {
+        console.log("POP");
+        // console.log(docName);
+        this.setState({
+            // selectedDoc: docName,
+            showPopup: !this.state.showPopup
+        });
       }
 
       componentDidMount(){
@@ -88,25 +101,33 @@ class NavBar extends React.Component {
     }
 
     setDocuments(name){
-        var x;
-        // console.log(name)
+                   
+        var x = 0;
+        var stringArray = [];
         for( x = 0 ; x < Students.length ; x++) {
-            console.log(Students[x].name)
             
-            if ( name == Students[x].name.valueOf()) {
-                console.log("ABOOBARAK")
-                this.setstate({documentNames: Students.documentNames});
+            if ( name === Students[x].name) {
+                console.log(Students[x].name);
+                console.log(Students[x].documentNames);
+                this.setState({document1: Students[x].documentNames[0]});
+                this.setState({document2: Students[x].documentNames[1]});
+                
+
+                // this.setState({documentNames: stringArray});
+                // console.log(this.documentNames);
+                console.log("ABOOBAKAR");
+                // console.log(Students[x].documentNames);
+                this.setState({documentImg: Students[x].documentNames[0]});
             }
             
         }
         
-        this.setstate({documentImg: this.state.documentNames[0]});
     }
 
+    changedoc(document){
 
-
-
-
+        this.setState({documentImg : document});
+    }
 
     signout(){
         firebase.auth().signOut().then(() => {
@@ -125,8 +146,6 @@ class NavBar extends React.Component {
 
 
         if (this.state.loggedin){
-
-
 
             return (
             <div id="container">
@@ -194,7 +213,7 @@ class NavBar extends React.Component {
 
                     <div class="w-100"></div>
                         <Col>
-                        <Image></Image>
+                        <Image syle={{maxWidth: "400px"}} id="schoolImages" src={"/loginImgs/" + this.state.documentImg + '.jpeg'}></Image>
                         </Col>
 
 
@@ -207,11 +226,9 @@ class NavBar extends React.Component {
                 <InfoCards></InfoCards>
             <div class="w-100"></div>
             <ListGroup>
-                <ListGroup.Item>{ this.state.documentNames[0] } </ListGroup.Item>
-                <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-                <ListGroup.Item>Morbi leo risus</ListGroup.Item>
-                <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
-                <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
+                <ListGroup.Item action onClick={() => this.changedoc(this.state.document1)}>{ this.state.document1 } </ListGroup.Item>
+                <ListGroup.Item action onClick={() => this.changedoc(this.state.document2)}> { this.state.document2 } </ListGroup.Item>
+                <ListGroup.Item action onClick={() => this.changedoc(this.state.document3)}> { this.state.document3 } </ListGroup.Item>
             </ListGroup>
             
             </Col>

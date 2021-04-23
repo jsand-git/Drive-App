@@ -8,7 +8,7 @@ export default function SearchBar() {
 
   
     return (
-        <InputGroup className="mb-3">
+        <InputGroup className="mb-3" style={{ margin:"10px" }}>
             <InputGroup.Prepend>
                 <InputGroup.Text id="basic-addon1">Search</InputGroup.Text>
             </InputGroup.Prepend>

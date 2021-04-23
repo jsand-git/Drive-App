@@ -2,6 +2,12 @@
   display: flex;
 }
 
+#schoolImages {
+  max-width: 400px;
+  margin: 10px;
+}
+
+
 .sidebar {
   
     background-color: #235789;
@@ -29,13 +35,7 @@
     font-size: 2 rem;
 }
 
-#page-content-wrapper1 {
-  border: 1px solid blue;
-}
 
-#page-content-wrapper2 {
-  border: 1px solid red;
-}
 
 #imageKofi {
   max-width: 100px;
@@ -43,13 +43,13 @@
 }
 
 #nameEmail{
-  border: 1px solid red;
+  /* border: 1px solid red; */
   justify-content: center !important;
   align-items: center !important;
 }
 
 #contentstuff{
-  border: 1px solid rgb(0, 255, 0);
+
   justify-content: center !important;
   align-items: center !important;
 }
